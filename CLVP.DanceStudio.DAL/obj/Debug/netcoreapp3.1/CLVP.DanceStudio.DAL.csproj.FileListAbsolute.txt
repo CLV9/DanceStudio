@@ -1,0 +1,8 @@
+D:\DanceStudio\CLVP.DanceStudio\CLVP.DanceStudio.DAL\bin\Debug\netcoreapp3.1\CLVP.DanceStudio.DAL.deps.json
+D:\DanceStudio\CLVP.DanceStudio\CLVP.DanceStudio.DAL\bin\Debug\netcoreapp3.1\CLVP.DanceStudio.DAL.dll
+D:\DanceStudio\CLVP.DanceStudio\CLVP.DanceStudio.DAL\bin\Debug\netcoreapp3.1\CLVP.DanceStudio.DAL.pdb
+D:\DanceStudio\CLVP.DanceStudio\CLVP.DanceStudio.DAL\obj\Debug\netcoreapp3.1\CLVP.DanceStudio.DAL.csprojAssemblyReference.cache
+D:\DanceStudio\CLVP.DanceStudio\CLVP.DanceStudio.DAL\obj\Debug\netcoreapp3.1\CLVP.DanceStudio.DAL.AssemblyInfoInputs.cache
+D:\DanceStudio\CLVP.DanceStudio\CLVP.DanceStudio.DAL\obj\Debug\netcoreapp3.1\CLVP.DanceStudio.DAL.AssemblyInfo.cs
+D:\DanceStudio\CLVP.DanceStudio\CLVP.DanceStudio.DAL\obj\Debug\netcoreapp3.1\CLVP.DanceStudio.DAL.dll
+D:\DanceStudio\CLVP.DanceStudio\CLVP.DanceStudio.DAL\obj\Debug\netcoreapp3.1\CLVP.DanceStudio.DAL.pdb

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CLVP.DanceStudio.DAL\CLVP.DanceStudio.DAL.csproj" />
+    <ProjectReference Include="..\CLVP.DanceStudio.WPF\CLVP.DanceStudio.WPF.csproj" />
+  </ItemGroup>
+
+</Project>

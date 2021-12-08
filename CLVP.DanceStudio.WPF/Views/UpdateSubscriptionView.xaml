@@ -1,0 +1,114 @@
+﻿<Window x:Class="CLVP.DanceStudio.WPF.Views.UpdateSubscriptionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CLVP.DanceStudio.WPF.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:cal="http://caliburnmicro.com"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Редактирование абонемента" Height="600" Width="420" Background="{x:Null}" WindowStyle="None">
+    <materialDesign:Card  UniformCornerRadius="15" Background="#FF191A1F">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <materialDesign:PackIcon Kind="Edit" Margin="10,11,0,0" Foreground="White" Height="20" Width="20"/>
+                <TextBlock Text="Редактирование абонемента" Margin="42,13,0,0" VerticalAlignment="Top" Foreground="White"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="ФИО" Grid.Row="0" Foreground="White" Margin="10"/>
+                <TextBlock Text="Дата начала" Grid.Row="1" Foreground="White" Margin="10"/>
+                <TextBlock Text="Дата конца" Grid.Row="2" Foreground="White" Margin="10"/>
+                <TextBlock Text="Всего посещений" Grid.Row="3" Foreground="White" Margin="10"/>
+                <TextBlock Text="Количество посещений" Grid.Row="4" Foreground="White" Margin="10"/>
+
+                <TextBox x:Name="Client_FullName" Grid.Row="0" Grid.Column="1" Foreground="White" Margin="10" IsReadOnly="True"/>
+                <DatePicker x:Name="Subscription_StartDate" Grid.Row="1" Grid.Column="1" Foreground="White" Margin="10"/>
+                <DatePicker x:Name="Subscription_EndDate" Grid.Row="2" Grid.Column="1" Foreground="White" Margin="10"/>
+                <TextBox x:Name="Subscription_TotalVisits" Grid.Row="3" Grid.Column="1" Foreground="White" Margin="10"/>
+                <TextBox x:Name="Subscription_VisitsCount" Grid.Row="4" Grid.Column="1" Foreground="White" Margin="10" IsReadOnly="True"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <DataGrid x:Name="Visits" AutoGenerateColumns="False" IsReadOnly="True" Margin="12">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#673ab7">
+                                        <StackPanel>
+                                            <materialDesign:PackIcon Width="20" Height="20" Kind="Delete"/>
+                                        </StackPanel>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteVisit">
+                                                    <cal:Parameter Value="$datacontext"/>
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Направление" Binding="{Binding Direction.Name}"/>
+                        <DataGridTemplateColumn Header="Дата посещения">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker x:Name="VisitDate" SelectedDate="{Binding Date}" IsEnabled="False"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="AddVisit" Grid.Row="1"
+                    Width="15" Height="15"
+                    Padding="0" Margin="20"
+                    HorizontalContentAlignment="Center"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    VerticalContentAlignment="Center" Background="Green"
+                    BorderThickness="0">
+
+                    <materialDesign:PackIcon
+                    Width="15"
+                    Height="15"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Kind="Add" />
+                </Button>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Button Width="150" Background="Green" 
+                        VerticalAlignment="Center" HorizontalAlignment="Left" 
+                        Margin="40,0,0,5" Content="Применить" x:Name="Create"/>
+
+                <Button Width="150" Background="Red" VerticalAlignment="Center" 
+                        HorizontalAlignment="Right" Margin="0,0,40,5" 
+                        Content="Отмена" x:Name="Cancel"/>
+            </Grid>
+        </Grid>
+    </materialDesign:Card>
+</Window>

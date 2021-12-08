@@ -1,0 +1,145 @@
+﻿<Window x:Class="CLVP.DanceStudio.WPF.Views.UpdateClientView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:cal="http://caliburnmicro.com"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="EditClientView" Height="600" Width="520" Background="{x:Null}" WindowStyle="None">
+    <materialDesign:Card Background="#FF191A1F">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center" Foreground="White" Height="20" Width="20" Margin="10,0,0,0"/>
+                <TextBlock Text="Редактирование клиента" VerticalAlignment="Center" Foreground="White" Margin="35,0,60,0"/>
+                <Button x:Name="Delete"
+                    Width="30" Height="30"
+                    Padding="0" Margin="0,0,10,0"
+                    HorizontalAlignment="Right" HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center" Background="Transparent"
+                    BorderThickness="0">
+                    <materialDesign:PackIcon
+                        Width="25"
+                        Height="25"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="Red"
+                        Kind="Delete"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="Model_FullName" Grid.Row="0" Grid.Column="1" Foreground="White" Margin="10"/>
+                <TextBlock Text="ФИО" Grid.Row="0" Foreground="White" Margin="10"/>
+
+                <TextBox x:Name="Model_Phone" Grid.Row="1" Grid.Column="1" Foreground="White" Margin="10"/>
+                <TextBlock Text="Телефон" Grid.Row="1" Foreground="White" Margin="10"/>
+
+                <TextBlock Text="Комментарий" Grid.Row="2" Foreground="White" Margin="10"/>
+                <TextBox x:Name="Model_Comment" Grid.Row="2" Grid.Column="1" Foreground="White" Margin="10"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <DataGrid x:Name="Subscriptions" AutoGenerateColumns="False" Margin="10,10,10,10" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#673ab7">
+                                        <StackPanel>
+                                            <materialDesign:PackIcon Width="20" Height="20" Kind="Edit"/>
+                                        </StackPanel>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="EditSubscription">
+                                                    <cal:Parameter Value="$datacontext"/>
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#673ab7">
+                                        <StackPanel>
+                                            <materialDesign:PackIcon Width="20" Height="20" Kind="Delete"/>
+                                        </StackPanel>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteSubscription">
+                                                    <cal:Parameter Value="$datacontext"/>
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Дата начала">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker x:Name="StartDate" SelectedDate="{Binding StartDate}" IsEnabled="False"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Дата конца">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker x:Name="EndDate" SelectedDate="{Binding EndDate}" IsEnabled="False"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Количество посещений" Binding="{Binding Path=VisitsCount}"/>
+                        <DataGridTextColumn Header="Всего посещений" Binding="{Binding Path=TotalVisits}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="AddSubscription"
+                Width="18" Height="18"
+                Padding="0" Margin="20,19,0,0"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Background="Green" Foreground="White"
+                BorderThickness="0">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Content" Value="{materialDesign:PackIcon Kind=Add}"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Button Width="150" Background="Green" 
+                        VerticalAlignment="Center" HorizontalAlignment="Left" 
+                        Margin="40,0,0,5" Content="Применить" x:Name="ApplyChanges"/>
+
+                <Button Width="150" Background="Red" VerticalAlignment="Center" 
+                        HorizontalAlignment="Right" Margin="0,0,40,5" 
+                        Content="Отмена" x:Name="CancelChanges"/>
+            </Grid>
+        </Grid>
+    </materialDesign:Card>
+</Window>
